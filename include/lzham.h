@@ -39,7 +39,11 @@
 #endif
 
 #ifdef LZHAM_EXPORTS
-   #define LZHAM_DLL_EXPORT __declspec(dllexport)
+    #if defined(_MSC_VER)
+        #define LZHAM_DLL_EXPORT __declspec(dllexport)
+    #else
+        #define LZHAM_DLL_EXPORT __attribute__((visibility("default")))
+    #endif
 #else
    #define LZHAM_DLL_EXPORT
 #endif
